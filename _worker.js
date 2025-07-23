@@ -1,6 +1,6 @@
-addEventListener('fetch', event => {
-  event.respondWith(new Response(
-    `<!DOCTYPE html>
+export default {
+  async fetch(request, env, ctx) {
+    const html = `<!DOCTYPE html>
 <html>
 <head>
     <title>GreaseBall Giorgio</title>
@@ -13,7 +13,7 @@ addEventListener('fetch', event => {
             padding: 20px; 
             margin: 0;
         } 
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -69,7 +69,7 @@ addEventListener('fetch', event => {
     <div class="container">
         <h1>Welcome to GreaseBall Giorgio!</h1>
         <p>Check out my YouTube channel for the latest content!</p>
-        
+
         <a href="https://youtube.com/@greaseballgiorgio" class="button" target="_blank">
             🎬 Visit My Channel
         </a>
@@ -81,13 +81,14 @@ addEventListener('fetch', event => {
         <p>🛸 Ancient Aliens Expert & Content Creator 🛸</p>
     </div>
 </body>
-</html>`,
-    { 
-      status: 200, 
-      headers: { 
+</html>`;
+
+    return new Response(html, {
+      status: 200,
+      headers: {
         'Content-Type': 'text/html',
         'Cache-Control': 'public, max-age=300'
-      } 
-    }
-  ));
-});
+      }
+    });
+  }
+};
